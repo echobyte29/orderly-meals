@@ -58,6 +58,36 @@ const mockMenuItems: MenuItem[] = [
     category: "Desserts",
     available: false,
     isVeg: true
+  },
+  {
+    id: "6",
+    name: "Caesar Salad",
+    description: "Fresh romaine lettuce with Caesar dressing, croutons, and Parmesan cheese.",
+    price: 199,
+    image: "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=400",
+    category: "Salads",
+    available: true,
+    isVeg: true
+  },
+  {
+    id: "7",
+    name: "Spaghetti Carbonara",
+    description: "Classic Italian pasta with eggs, cheese, pancetta, and black pepper.",
+    price: 329,
+    image: "https://images.unsplash.com/photo-1608796316151-37a4ea8e8a69?w=400",
+    category: "Main Course",
+    available: true,
+    isVeg: false
+  },
+  {
+    id: "8",
+    name: "Chocolate Lava Cake",
+    description: "Warm, gooey chocolate cake with a molten center.",
+    price: 129,
+    image: "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=400",
+    category: "Desserts",
+    available: true,
+    isVeg: true
   }
 ];
 

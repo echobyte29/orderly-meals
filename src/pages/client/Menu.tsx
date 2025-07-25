@@ -36,6 +36,36 @@ const mockMenuItems: MenuItem[] = [
     category: "Main Course",
     available: true,
     isVeg: true
+  },
+  {
+    id: "3",
+    name: "Biryani Special",
+    description: "Aromatic basmati rice with spiced meat and saffron",
+    price: 349,
+    image: "https://images.unsplash.com/photo-1563379091339-03246963d25a?w=400",
+    category: "Rice",
+    available: true,
+    isVeg: false
+  },
+  {
+    id: "4",
+    name: "Masala Dosa",
+    description: "Crispy crepe filled with spiced potato curry",
+    price: 149,
+    image: "https://images.unsplash.com/photo-1630383249896-424e482df921?w=400",
+    category: "South Indian",
+    available: true,
+    isVeg: true
+  },
+  {
+    id: "5",
+    name: "Gulab Jamun",
+    description: "Sweet milk dumplings in sugar syrup",
+    price: 99,
+    image: "https://images.unsplash.com/photo-1626132647523-66f3bf8f4d04?w=400",
+    category: "Desserts",
+    available: false,
+    isVeg: true
   }
 ];
 
