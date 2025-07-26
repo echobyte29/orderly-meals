@@ -2,6 +2,8 @@ import { Navigation } from "@/components/ui/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
+import { getOrders, updateOrderStatus } from "@/lib/db";
 
 declare global {
   interface Window {
@@ -11,11 +13,16 @@ declare global {
 
 export default function Payment() {
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handlePayment = () => {
+    const orders = getOrders();
+    const order = orders[orders.length - 1];
+    const totalAmount = order.items.reduce((sum, item) => sum + item.price, 0);
+
     const options = {
       key: "rzp_test_1DPv2jVd3f3f3f", // Replace with your test key
-      amount: 54800, // Amount in paise
+      amount: totalAmount * 100, // Amount in paise
       currency: "INR",
       name: "CloudKitchen",
       description: "Order Payment",
@@ -26,33 +33,9 @@ export default function Payment() {
           description: `Payment ID: ${response.razorpay_payment_id}`,
         });
 
-        // Send order data to n8n webhook
-        const orderData = {
-          payment_id: response.razorpay_payment_id,
-          customer_name: "Test Customer",
-          customer_email: "test.customer@example.com",
-          customer_contact: "9999999999",
-          address: "Test Address, Pune",
-          amount: 548,
-          items: [
-            { id: "1", name: "Butter Chicken", quantity: 1 },
-            { id: "2", name: "Paneer Tikka Masala", quantity: 1 },
-          ],
-          timestamp: new Date().toISOString()
-        };
+        updateOrderStatus(order.id, "Confirmed");
 
-        fetch("https://n8n.cloud.u-d-g.ch/webhook/31631a0e-2b45-43f6-9333-3ec974a614ca", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(orderData),
-        })
-        .then(res => res.json())
-        .then(data => console.log("Webhook response:", data))
-        .catch(err => console.error("Webhook error:", err));
-
-        console.log("Payment successful:", response);
+        navigate("/order-confirmation");
       },
       prefill: {
         name: "Test Customer",
@@ -90,7 +73,7 @@ export default function Payment() {
             <div className="space-y-4">
               <div>
                 <p className="text-muted-foreground">Amount to pay</p>
-                <p className="text-2xl font-bold">₹548</p>
+                <p className="text-2xl font-bold">₹{getOrders()[getOrders().length - 1].items.reduce((sum, item) => sum + item.price, 0).toFixed(2)}</p>
               </div>
               <Button className="w-full bg-gradient-primary" onClick={handlePayment}>
                 Pay with Razorpay

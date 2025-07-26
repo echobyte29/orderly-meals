@@ -11,6 +11,7 @@ import CustomerOrders from "./pages/customer/Orders";
 import CustomerProfile from "./pages/customer/Profile";
 import CustomerTrack from "./pages/customer/Track";
 import Payment from "./pages/customer/Payment";
+import OrderConfirmation from "./pages/customer/OrderConfirmation";
 import ClientLogin from "./pages/client/Login";
 import ClientDashboard from "./pages/client/Dashboard";
 import ClientOrders from "./pages/client/Orders";
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/profile" element={<CustomerProfile />} />
           <Route path="/track" element={<CustomerTrack />} />
           <Route path="/payment" element={<Payment />} />
+          <Route path="/order-confirmation" element={<OrderConfirmation />} />
           
           {/* Client Routes */}
           <Route path="/client" element={<ClientLogin />} />
