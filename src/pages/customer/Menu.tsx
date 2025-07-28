@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Search, Filter } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-import { mockMenuItems } from "./Menu";
+import { mockMenuItems } from "./menuData";
 
 const categories = ["All", "Main Course", "Rice", "South Indian", "Desserts", "Beverages"];
 
